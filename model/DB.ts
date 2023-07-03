@@ -11,7 +11,10 @@ class CnxMongo {
             // Connecting to a Local Database
             //await client.connect("mongodb://127.0.0.1:27017");
             //await client.connect(config().STRCNX || Deno.env.get('STRCNX') || 'mongodb://127.0.0.1:27017');
-            await client.connect(Deno.env.get('STRCNX') || 'mongodb://127.0.0.1:27017');
+            const strcnx = Deno.env.get('STRCNX') || 'mongodb://127.0.0.1:27017'
+            console.log(`Deno.env.get('STRCNX'):`, Deno.env.get('STRCNX'))
+            console.log('strcnx:', strcnx)
+            await client.connect(strcnx);
 
             // Connecting to a Mongo Atlas Database
             /* await client.connect({
