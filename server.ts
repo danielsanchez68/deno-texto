@@ -2,17 +2,35 @@
 import { opine, json, serveStatic  } from "./deps.ts";
 import RouterPalabras from './router/palabras.ts'
 import CnxMongo from './model/DB.ts'
-import { faker } from 'https://cdn.skypack.dev/@faker-js/faker/locale/es_MX';
+import { fakerES_MX as faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
+/*
+import { allFakers } from 'https://cdn.skypack.dev/@faker-js/faker';
+
+for (const key of Object.keys(allFakers)) {
+  try {
+    
+    console.log(
+      `In locale ${key}, a sample word is '${allFakers[key].word.words({ count: 1 })}'`
+    );
+  } catch (e) {
+    console.log(`In locale ${key}, an error occurred: ${e}`);
+  }
+}
+*/
+
+/*
 const randomName = faker.person.fullName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 const palabras = faker.word.words({ count: 5 })
+*/
 
-console.log(randomName)
+/* console.log(randomName)
 console.log(randomEmail)
 console.log(palabras)
 console.log(faker.word.adjective())
-
+console.log(faker.hacker.noun())
+console.log(faker.lorem.words()) */
 
 const app = opine();
 app.use(json());
@@ -54,8 +72,8 @@ app.get('/premios',(_,res) => {
 //app.use('/palabras', new RouterPalabras().start())
 
 app.get('/palabras',(req,res) => {
-  console.log(req.params)
-  console.log(req.query)
+  //console.log(req.params)
+  //console.log(req.query)
   const cantidad = Number(req.query.cantidad || 0)
   const palabras = faker.word.words({ count: cantidad }).split(' ')
 
